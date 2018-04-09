@@ -83,6 +83,26 @@ def add_info():
         return render_template('index.html', username=username, email=email, 
         email_error_1=email_error_1)
 
+    if (email) and " " in (email.strip()): 
+        email_error_2 = "Email cannot contain spaces."
+        return render_template('index.html', username=username, email=email, 
+        email_error_2=email_error_2)
+
+    if (email) and "." not in (email.strip()): 
+        email_error_3 = "Email must contain a period."
+        return render_template('index.html', username=username, email=email, 
+        email_error_3=email_error_3)
+
+    if (email) and len(email) < 3:
+        email_error_4 = "Buddy, there is no way this is a real email address."
+        return render_template('index.html', username=username, email=email, 
+        email_error_4=email_error_4)
+
+    if (email) and len(email) > 20: 
+        email_error_5 = "Email address must be shorter than 20 characters."
+        return render_template('index.html', username=username, email=email, 
+        email_error_5=email_error_5)
+
 
     # 'escape' the user's input so that if they typed HTML, it doesn't mess up our site
     username_escaped = cgi.escape(username, quote=True)
